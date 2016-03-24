@@ -1,0 +1,2 @@
+Finish the functions in private class myiterator
+Reimplement the iterators in list.java
