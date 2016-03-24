@@ -3,6 +3,8 @@
 // HW16 - Generational Improvement
 // 2016-03-19
 
+import java.util.Iterator;
+
 /*****************************************************
  * class LList
  * Implements a linked list
