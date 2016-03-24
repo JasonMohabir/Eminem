@@ -261,6 +261,24 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
 	System.out.println( james + "\tsize: " + james.size() );
     }
 
+
+    private class MyIterator implements Iterator<T>{
+
+
+	private DLLNode<T> _curr; // dummy node                                                                                                                                          
+	public MyIterator(){}
+	public boolean hasnext() {}
+	public T next() {}
+	public voidremove() {}
+	// must take into acct:                                                                                                                                                   
+	// next() call MUST precede each remove() call                                                                                                                           
+	// eg next(), rm(), rm(), -> MUST THROW EXCEPTION                                                                                                                        
+	// Q: how make sure user alls next() before rm?                                                                                                                             
+
+    }
+
+
+
 }//end class LList
 
 
