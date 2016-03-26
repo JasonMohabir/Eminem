@@ -1,2 +1,0 @@
-# Eminem
-Linked List

@@ -9,6 +9,9 @@
  * Version 04 uses doubly-linked nodes with generic cargo
  *****************************************************/
 
+import java.util.*;
+import java.io.*;
+
 public class LList<T> implements List<T> { //your List.java must be in same dir
 
     //instance vars
@@ -213,6 +216,50 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
         return retStr;
     }
 
+    public Iterator<T> iterator(){ return new MyIterator(); }
+
+    
+    private class MyIterator implements Iterator<T> {
+        private DLLNode<T> curr;
+        private boolean _okToRemove; //indicate next() was called
+        int counter = -1; //index of current pos
+
+        public MyIterator(){ //initialize the variables
+            curr = null;
+            _okToRemove = false;
+        }
+
+        public boolean hasNext(){
+            if (curr == null){ //first case
+                return true;
+            }
+            return (curr.getNext() != null);
+        }
+
+        public T next(){
+            if( hasNext() ){
+                if( curr == null ) {curr = _head;}
+		
+		else { curr = curr.getNext(); }
+		
+		_okToRemove = true;
+                counter++;
+                return curr.getCargo();
+            } 
+	    else { throw new NoSuchElementException(); }
+        }
+
+        public void remove(){
+            if( _okToRemove ){
+                LList.this.remove(counter);
+                _okToRemove = false;
+            }
+	    
+	    else {throw new IllegalStateException("Should call next()");}
+        }
+    }
+  
+
 
     //main method for testing
     public static void main( String[] args ) {
@@ -260,23 +307,4 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
         System.out.println( "...after remove(0): " + james.remove(0) );
         System.out.println( james + "\tsize: " + james.size() );
     }
-
-
-    private class MyIterator implements Iterator<T>{
-        //Add call to my iterator
-        private DLLNode<T> _curr; // dummy node
-        public MyIterator(){}
-        boolean okayToRemove(){};
-        public boolean hasnext() {}
-        public T next() {}
-        public voidremove() {}
-        // must take into acct:
-        // next() call MUST precede each remove() call
-        // eg next(), rm(), rm(), -> MUST THROW EXCEPTION
-        // Q: how make sure user alls next() before rm?
-
-    }
-
-
-
 }//end class LList

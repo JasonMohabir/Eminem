@@ -9,7 +9,7 @@
 
 import java.util.Iterator;
 
-public interface List<T>/*extends Iterable<T>*/ { 
+public interface List<T> extends Iterable<T> { 
 
     //add element T to end of list
     //always return true
@@ -31,6 +31,6 @@ public interface List<T>/*extends Iterable<T>*/ {
     public int size(); 
 
     //return an Iterator over the elements in list
-    //    Iterator<T> iterator();
+    public Iterator<T> iterator();
 
 }//end interface List
