@@ -1,16 +1,15 @@
-// Jason Mohabir
+// Team Eminem - Jason Mohabir and Kyle Moon
 // APCS pd2
-// HW16 - Generational Improvement
-// 2016-03-19
+// HW18 - For Each Is the Goal
+// 2016-03-26
 
 /*****************************************************
  * class LList
  * Implements a linked list
- * Version 04 uses doubly-linked nodes with generic cargo
+ * Version 06 uses doubly-linked nodes with generic cargo and is iterable
  *****************************************************/
 
-import java.util.*;
-import java.io.*;
+import java.util.Iterator;
 
 public class LList<T> implements List<T> { //your List.java must be in same dir
 
@@ -236,9 +235,9 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
             return (curr.getNext() != null);
         }
 
-        public T next(){
+        public T next(){ // iterates curr through linked list
             if( hasNext() ){
-                if( curr == null ) {curr = _head;}
+                if( curr == null ) {curr = _head;} // assign curr to _head of LList
 		
 		else { curr = curr.getNext(); }
 		
@@ -249,9 +248,9 @@ public class LList<T> implements List<T> { //your List.java must be in same dir
 	    else { throw new NoSuchElementException(); }
         }
 
-        public void remove(){
-            if( _okToRemove ){
-                LList.this.remove(counter);
+        public void remove(){ //remove node
+            if( _okToRemove ){ // ensures curr is on a node
+                LList.this.remove(counter); //call outer method
                 _okToRemove = false;
             }
 	    
